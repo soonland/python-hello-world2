@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import JSONFormatter
 from urllib.parse import urlparse, parse_qs
+import json
 
 
 class handler(BaseHTTPRequestHandler):
@@ -31,7 +32,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json_formatted.encode())
+            self.wfile.write(json.dumps(json_formatted).encode())
         else:
             self.send_response(400)
             self.send_header('Content-type', 'application/json')
@@ -47,7 +48,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json_formatted.encode())
+            self.wfile.write(json.dumps(json_formatted).encode())
         else:
             self.send_response(400)
             self.send_header('Content-type', 'application/json')
