@@ -18,7 +18,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(400)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write("Bad Request".encode())
+            self.wfile.write("Bad Request, no action".encode())
         return
 
     def get_transcript(self, query_components):
@@ -36,7 +36,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(400)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write("Bad Request".encode())
+            self.wfile.write("Bad Request, no video id".encode())
 
     def list_transcripts(self, query_components):
         video_id = query_components.get('videoId', [None])[0]
@@ -52,4 +52,4 @@ class handler(BaseHTTPRequestHandler):
             self.send_response(400)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write("Bad Request".encode())
+            self.wfile.write("Bad Request, no video id".encode())
